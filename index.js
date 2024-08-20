@@ -127,6 +127,40 @@ dayTheme.addEventListener('click', () => {
 darkTheme.addEventListener('click', () => {
     setTheme('dark');
 });
+// JavaScript to handle theme toggling
+document.addEventListener("DOMContentLoaded", function() {
+    const themeButton = document.getElementById('theme-button');
+    
+    // Function to switch theme
+    function toggleTheme() {
+        document.body.classList.toggle('dark-theme');
+        const isDark = document.body.classList.contains('dark-theme');
+        themeButton.src = isDark ? 'Moon.png' : 'Sun.png';
+        themeButton.style.width = '30px';
+        themeButton.style.height = '30px';
+    }
+
+    // Check saved theme preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark-theme');
+            themeButton.src = 'Moon.png';
+        } else {
+            document.body.classList.remove('dark-theme');
+            themeButton.src = 'Sun.png';
+        }
+    }
+
+    // Add click event listener to the theme toggle button
+    themeButton.addEventListener('click', function() {
+        toggleTheme();
+
+        // Save the current theme preference
+        const currentTheme = document.body.classList.contains('dark-theme') ? 'dark' : 'light';
+        localStorage.setItem('theme', currentTheme);
+    });
+});
 
 // Set the initial theme
 const savedTheme = localStorage.getItem('theme') || 'day';
