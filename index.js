@@ -106,11 +106,11 @@ const setTheme = (theme) => {
     if (theme === 'dark') {
         document.body.style.backgroundColor = '#111111';
         document.querySelector('.container').style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
-        themeIcon.src = 'Moon.png';
+        themeIcon.src = '../Images/Moon.png';
     } else {
         document.body.style.backgroundColor = '#f4f4f4';
         document.querySelector('.container').style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
-        themeIcon.src = 'Sun.png';
+        themeIcon.src = '../Images/Sun.png';
     }
     localStorage.setItem('theme', theme);
 };
