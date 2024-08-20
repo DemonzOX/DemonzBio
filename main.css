@@ -1,6 +1,6 @@
 body {
     font-family: 'Arial', sans-serif;
-    background-color: rgba(0, 0, 0, 0.5); /* Low opacity background */
+    background-color: rgba(0, 0, 0, 0.5); /* Low opacity for overall background */
     margin: 0;
     padding: 0;
     text-align: center;
@@ -13,7 +13,7 @@ body {
     max-width: 600px;
     margin: 0 auto;
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.6); /* Lower opacity content area */
+    background-color: rgba(255, 255, 255, 0.1); /* Very low opacity for content area */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: left;
     display: flex;
@@ -59,9 +59,9 @@ h1 {
     display: inline-block;
     width: 40px;
     height: 40px;
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.2); /* Low opacity for buttons */
     border-radius: 50%;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 1);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
     overflow: hidden;
     text-decoration: none;
 }
@@ -84,7 +84,7 @@ h1 {
     display: flex;
     align-items: center;
     gap: 5px;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.3); /* Low opacity for visitor and like buttons */
     border-radius: 50%;
     padding: 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
@@ -123,8 +123,8 @@ h1 {
 
 #theme-button {
     cursor: pointer;
-    width: 30px; /* Smaller size */
-    height: 30px;
+    width: 25px; /* Smaller size for theme toggle button */
+    height: 25px;
 }
 
 .theme-options {
@@ -134,7 +134,7 @@ h1 {
 }
 
 .theme-options img {
-    width: 20px; /* Smaller size */
+    width: 20px; /* Smaller size for theme options */
     height: 20px;
     cursor: pointer;
 }
