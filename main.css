@@ -13,7 +13,7 @@ body {
     max-width: 600px;
     margin: 0 auto;
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.9); /* Clearer content area */
+    background-color: rgba(255, 255, 255, 0.6); /* Lower opacity content area */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: left;
     display: flex;
@@ -123,6 +123,8 @@ h1 {
 
 #theme-button {
     cursor: pointer;
+    width: 30px; /* Smaller size */
+    height: 30px;
 }
 
 .theme-options {
@@ -132,8 +134,8 @@ h1 {
 }
 
 .theme-options img {
-    width: 30px;
-    height: 30px;
+    width: 20px; /* Smaller size */
+    height: 20px;
     cursor: pointer;
 }
 
