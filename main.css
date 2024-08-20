@@ -1,29 +1,55 @@
+/* Body styling */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: rgba(0, 0, 0, 0.5); /* Low opacity for overall background */
+    background-color: rgba(0, 0, 0, 0.7); /* Low opacity for full page */
     margin: 0;
     padding: 0;
     text-align: center;
     position: relative;
-    transition: background-color 0.5s;
     overflow-x: hidden;
 }
 
+/* Container styling */
 .container {
     max-width: 600px;
     margin: 0 auto;
     padding: 20px;
     background-color: rgba(255, 255, 255, 0.1); /* Very low opacity for content area */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: left;
     display: flex;
     flex-direction: column;
-    min-height: 94.5vh;
-    transition: background-color 0.5s;
+    min-height: 100vh; /* Ensure it covers the full viewport height */
     position: relative;
     z-index: 2;
+    color: #fff; /* Text color to ensure readability */
 }
 
+/* Particle background */
+#particles-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0.5; /* Lower opacity to blend better with the page */
+}
+
+/* Theme toggle button */
+.theme-toggler {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
+}
+
+#theme-button {
+    cursor: pointer;
+    width: 30px; /* Smaller size for theme toggle button */
+    height: 30px;
+}
+
+/* Profile and buttons styling */
 .profile {
     display: block;
     margin: 0 auto 20px;
@@ -32,26 +58,10 @@ body {
     height: 150px;
 }
 
-h1 {
-    text-align: center;
-    margin: 20px 0;
-}
-
-.info {
-    margin-top: 30px;
-}
-
-.info p {
-    font-size: 18px;
-    line-height: 1.2;
-    margin: 3px 0;
-}
-
 .buttons {
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
-    margin-top: auto; /* Push to the bottom */
+    margin-top: auto;
     gap: 10px;
 }
 
@@ -59,19 +69,13 @@ h1 {
     display: inline-block;
     width: 40px;
     height: 40px;
-    background-color: rgba(255, 255, 255, 0.2); /* Low opacity for buttons */
+    background-color: rgba(255, 255, 255, 0.2);
     border-radius: 50%;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
     overflow: hidden;
     text-decoration: none;
 }
 
-.buttons a img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
+/* Visitor and like buttons */
 .visitor-like {
     position: fixed;
     bottom: 10px;
@@ -84,10 +88,9 @@ h1 {
     display: flex;
     align-items: center;
     gap: 5px;
-    background-color: rgba(255, 255, 255, 0.3); /* Low opacity for visitor and like buttons */
+    background-color: rgba(255, 255, 255, 0.3);
     border-radius: 50%;
     padding: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
 .visitor img, .like img {
@@ -101,48 +104,7 @@ h1 {
     cursor: pointer;
 }
 
-#particles-js {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    opacity: 0.5;
-}
-
-.theme-toggler {
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-#theme-button {
-    cursor: pointer;
-    width: 25px; /* Smaller size for theme toggle button */
-    height: 25px;
-}
-
-.theme-options {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-}
-
-.theme-options img {
-    width: 20px; /* Smaller size for theme options */
-    height: 20px;
-    cursor: pointer;
-}
-
-.theme-toggler:hover .theme-options {
-    display: flex;
-}
-
+/* Responsive styling */
 @media (max-width: 768px) {
     .container {
         padding: 10px;
