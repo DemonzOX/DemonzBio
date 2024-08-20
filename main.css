@@ -1,6 +1,6 @@
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
+    background-color: rgba(0, 0, 0, 0.5); /* Low opacity background */
     margin: 0;
     padding: 0;
     text-align: center;
@@ -13,7 +13,7 @@ body {
     max-width: 600px;
     margin: 0 auto;
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.9); /* Clearer content area */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: left;
     display: flex;
@@ -21,6 +21,7 @@ body {
     min-height: 94.5vh;
     transition: background-color 0.5s;
     position: relative;
+    z-index: 2;
 }
 
 .profile {
@@ -74,7 +75,7 @@ h1 {
 .visitor-like {
     position: fixed;
     bottom: 10px;
-    left: 10px;
+    right: 10px;
     display: flex;
     gap: 15px;
 }
@@ -106,7 +107,7 @@ h1 {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1;
+    z-index: 1;
     opacity: 0.5;
 }
 
