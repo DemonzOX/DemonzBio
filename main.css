@@ -34,7 +34,7 @@ body {
     height: 100%;
     z-index: 1;
     opacity: 0.5; /* Ensure particles are visible */
-    transition: opacity 0.3s; /* Smooth transition for opacity changes */
+    transition: opacity 0.5s; /* Smooth transition for opacity changes */
 }
 
 /* Theme toggle button */
