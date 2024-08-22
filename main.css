@@ -11,8 +11,8 @@ body {
 
 /* Container styling */
 .container {
-    max-width: 100%; /* Full width */
-    margin: 0 auto;
+    width: 100%; /* Full width for all screen sizes */
+    margin: 0;
     padding: 20px;
     background-color: rgba(255, 255, 255, 0.1); /* Very low opacity for content area */
     text-align: left;
@@ -108,8 +108,7 @@ body {
 /* Responsive styling */
 @media (max-width: 768px) {
     .container {
-        padding: 10px;
-        max-width: 90%; /* Adjust for smaller screens */
+        padding: 10px; /* Slight padding to avoid content touching edges */
     }
 
     .buttons a {
