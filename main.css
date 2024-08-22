@@ -11,8 +11,8 @@ body {
 
 /* Container styling */
 .container {
-    max-width: 600px;
-    margin: 0 auto;
+    max-width: 100%; /* Make sure the container covers the full width */
+    margin: 0;
     padding: 20px;
     background-color: rgba(255, 255, 255, 0.1); /* Very low opacity for content area */
     text-align: left;
@@ -48,8 +48,8 @@ body {
 
 #theme-button {
     cursor: pointer;
-    width: 30px; /* Smaller size for theme toggle button */
-    height: 30px;
+    width: 24px; /* Smaller size for theme toggle button */
+    height: 24px;
 }
 
 .theme-options {
@@ -59,15 +59,15 @@ body {
     border-radius: 8px;
     padding: 10px;
     position: absolute;
-    top: 40px;
+    top: 30px; /* Adjusted to fit smaller theme button */
     right: 0;
     z-index: 1001;
 }
 
 .theme-options img {
     cursor: pointer;
-    width: 30px;
-    height: 30px;
+    width: 24px;
+    height: 24px;
     margin-bottom: 10px;
 }
 
