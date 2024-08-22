@@ -1,4 +1,4 @@
-// Background particles animation (same as previous)
+// Background particles animation
 const canvas = document.getElementById('particles-js');
 const ctx = canvas.getContext('2d');
 
@@ -77,7 +77,7 @@ animate();
 // Visitor count and like button functionality
 let visitorCount = localStorage.getItem('visitorCount') || 0;
 let likeCount = localStorage.getItem('likeCount') || 0;
-let hasLiked = localStorage.getItem('hasLiked') === 'true';
+let hasLiked = localStorage.getItem('hasLiked') || false;
 
 document.getElementById('visitor-count').textContent = visitorCount;
 document.getElementById('like-count').textContent = likeCount;
@@ -86,82 +86,31 @@ visitorCount++;
 localStorage.setItem('visitorCount', visitorCount);
 document.getElementById('visitor-count').textContent = visitorCount;
 
-document.getElementById('like-button').addEventListener('click', function() {
+document.getElementById('like-button').addEventListener('click', () => {
     if (!hasLiked) {
         likeCount++;
         localStorage.setItem('likeCount', likeCount);
-        localStorage.setItem('hasLiked', 'true');
         document.getElementById('like-count').textContent = likeCount;
-        hasLiked = true;
+        localStorage.setItem('hasLiked', true);
     }
 });
 
-// Theme changer functionality
-const themeButton = document.getElementById('theme-button');
-const themeIcon = document.getElementById('theme-icon');
-const dayTheme = document.getElementById('day-theme');
-const darkTheme = document.getElementById('dark-theme');
-
-const setTheme = (theme) => {
-    if (theme === 'dark') {
-        document.body.style.backgroundColor = '#111111';
-        document.querySelector('.container').style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
-        themeIcon.src = '../Images/Moon.png';
-    } else {
-        document.body.style.backgroundColor = '#f4f4f4';
-        document.querySelector('.container').style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
-        themeIcon.src = '../Images/Sun.png';
-    }
-    localStorage.setItem('theme', theme);
-};
-
-themeButton.addEventListener('click', () => {
+// Theme toggling logic
+document.getElementById('theme-button').addEventListener('click', () => {
     const themeOptions = document.querySelector('.theme-options');
-    themeOptions.style.display = themeOptions.style.display === 'flex' ? 'none' : 'flex';
+    themeOptions.classList.toggle('visible');
 });
 
-dayTheme.addEventListener('click', () => {
-    setTheme('day');
+document.getElementById('day-theme').addEventListener('click', () => {
+    document.body.style.backgroundColor = '#ffffff';
+    document.body.style.color = '#000000';
+    document.getElementById('theme-icon').src = '../Images/Moon.png';
+    document.querySelector('.container').style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
 });
 
-darkTheme.addEventListener('click', () => {
-    setTheme('dark');
+document.getElementById('dark-theme').addEventListener('click', () => {
+    document.body.style.backgroundColor = '#000000';
+    document.body.style.color = '#ffffff';
+    document.getElementById('theme-icon').src = '../Images/Sun.png';
+    document.querySelector('.container').style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
 });
-// JavaScript to handle theme toggling
-document.addEventListener("DOMContentLoaded", function() {
-    const themeButton = document.getElementById('theme-button');
-    
-    // Function to switch theme
-    function toggleTheme() {
-        document.body.classList.toggle('dark-theme');
-        const isDark = document.body.classList.contains('dark-theme');
-        themeButton.src = isDark ? 'Moon.png' : 'Sun.png';
-        themeButton.style.width = '30px';
-        themeButton.style.height = '30px';
-    }
-
-    // Check saved theme preference
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-        if (savedTheme === 'dark') {
-            document.body.classList.add('dark-theme');
-            themeButton.src = 'Moon.png';
-        } else {
-            document.body.classList.remove('dark-theme');
-            themeButton.src = 'Sun.png';
-        }
-    }
-
-    // Add click event listener to the theme toggle button
-    themeButton.addEventListener('click', function() {
-        toggleTheme();
-
-        // Save the current theme preference
-        const currentTheme = document.body.classList.contains('dark-theme') ? 'dark' : 'light';
-        localStorage.setItem('theme', currentTheme);
-    });
-});
-
-// Set the initial theme
-const savedTheme = localStorage.getItem('theme') || 'day';
-setTheme(savedTheme);
