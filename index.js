@@ -99,7 +99,6 @@ document.getElementById('like-button').addEventListener('click', function() {
 // Theme changer functionality
 const themeButton = document.getElementById('theme-button');
 const themeIcon = document.getElementById('theme-icon');
-const themeOptions = document.querySelector('.theme-options');
 const dayTheme = document.getElementById('day-theme');
 const darkTheme = document.getElementById('dark-theme');
 
@@ -117,17 +116,16 @@ const setTheme = (theme) => {
 };
 
 themeButton.addEventListener('click', () => {
+    const themeOptions = document.querySelector('.theme-options');
     themeOptions.style.display = themeOptions.style.display === 'flex' ? 'none' : 'flex';
 });
 
 dayTheme.addEventListener('click', () => {
     setTheme('day');
-    themeOptions.style.display = 'none';
 });
 
 darkTheme.addEventListener('click', () => {
     setTheme('dark');
-    themeOptions.style.display = 'none';
 });
 
 // Set the initial theme
