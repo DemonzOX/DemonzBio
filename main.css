@@ -1,12 +1,12 @@
 /* Body styling */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: rgba(0, 0, 0, 0.7); /* Default to dark mode */
     margin: 0;
     padding: 0;
     text-align: center;
     position: relative;
     overflow-x: hidden;
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for color changes */
 }
 
 /* Container styling */
@@ -22,6 +22,7 @@ body {
     position: relative;
     z-index: 2;
     color: #fff; /* Default text color for dark mode */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for color changes */
 }
 
 /* Particle background */
