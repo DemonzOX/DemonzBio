@@ -14,7 +14,7 @@ body {
     max-width: 100%; /* Make sure the container covers the full width */
     margin: 0;
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.1); /* Default to dark mode */
+    background-color: rgba(255, 255, 255, 0.5); /* Default to dark mode */
     text-align: left;
     display: flex;
     flex-direction: column;
@@ -156,12 +156,12 @@ body {
 
 /* Adjust content color based on theme */
 body.day-theme {
-    background-color: rgba(255, 255, 255, 0.7); /* White background with low opacity */
+    background-color: rgba(255, 255, 255, 0.9); /* White background with slightly higher opacity */
     color: #000; /* Black text color for day mode */
 }
 
 body.dark-theme {
-    background-color: rgba(0, 0, 0, 0.7); /* Black background with low opacity */
+    background-color: rgba(0, 0, 0, 0.9); /* Black background with slightly higher opacity */
     color: #fff; /* White text color for dark mode */
 }
 
