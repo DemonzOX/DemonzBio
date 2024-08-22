@@ -1,7 +1,7 @@
 /* Body styling */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: rgba(0, 0, 0, 0.7); /* Low opacity for full page */
+    background-color: rgba(0, 0, 0, 0.7); /* Default to dark mode */
     margin: 0;
     padding: 0;
     text-align: center;
@@ -14,14 +14,14 @@ body {
     max-width: 100%; /* Make sure the container covers the full width */
     margin: 0;
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.1); /* Very low opacity for content area */
+    background-color: rgba(255, 255, 255, 0.1); /* Default to dark mode */
     text-align: left;
     display: flex;
     flex-direction: column;
     min-height: 100vh; /* Ensure it covers the full viewport height */
     position: relative;
     z-index: 2;
-    color: #fff; /* Text color to ensure readability */
+    color: #fff; /* Default text color for dark mode */
 }
 
 /* Particle background */
@@ -135,6 +135,7 @@ body {
 @media (max-width: 768px) {
     .container {
         padding: 10px;
+        text-align: left; /* Ensure text alignment is consistent on mobile */
     }
 
     .buttons a {
@@ -153,10 +154,19 @@ body {
 }
 
 /* Adjust content color based on theme */
-body.day-theme .container {
-    color: #000; /* Black text for day theme */
+body.day-theme {
+    background-color: rgba(255, 255, 255, 0.7); /* White background with low opacity */
+    color: #000; /* Black text color for day mode */
 }
 
-body.dark-theme .container {
-    color: #fff; /* White text for dark theme */
+body.dark-theme {
+    background-color: rgba(0, 0, 0, 0.7); /* Black background with low opacity */
+    color: #fff; /* White text color for dark mode */
+}
+
+/* Center text in desktop view */
+@media (min-width: 769px) {
+    .container {
+        text-align: center; /* Center text for desktop view */
+    }
 }
