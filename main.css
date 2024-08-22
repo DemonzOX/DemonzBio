@@ -52,6 +52,11 @@ body {
     height: 24px;
 }
 
+#theme-icon {
+    width: 24px; /* Match the size of slide bar icons */
+    height: 24px;
+}
+
 .theme-options {
     display: none;
     flex-direction: column;
@@ -66,7 +71,7 @@ body {
 
 .theme-options img {
     cursor: pointer;
-    width: 24px;
+    width: 24px; /* Match the size of the theme button icon */
     height: 24px;
     margin-bottom: 10px;
 }
