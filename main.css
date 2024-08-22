@@ -11,7 +11,7 @@ body {
 
 /* Container styling */
 .container {
-    max-width: 90%; /* Adjust width to 90% for responsiveness */
+    max-width: 100%; /* Full width */
     margin: 0 auto;
     padding: 20px;
     background-color: rgba(255, 255, 255, 0.1); /* Very low opacity for content area */
@@ -22,6 +22,7 @@ body {
     position: relative;
     z-index: 2;
     color: #fff; /* Text color to ensure readability */
+    box-sizing: border-box; /* Ensure padding doesn't increase container width */
 }
 
 /* Particle background */
@@ -108,7 +109,7 @@ body {
 @media (max-width: 768px) {
     .container {
         padding: 10px;
-        max-width: 95%; /* Adjust width to fit smaller screens */
+        max-width: 90%; /* Adjust for smaller screens */
     }
 
     .buttons a {
