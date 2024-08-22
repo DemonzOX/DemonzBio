@@ -77,7 +77,7 @@ animate();
 // Visitor count and like button functionality
 let visitorCount = localStorage.getItem('visitorCount') || 0;
 let likeCount = localStorage.getItem('likeCount') || 0;
-let hasLiked = localStorage.getItem('hasLiked') || false;
+let hasLiked = localStorage.getItem('hasLiked') === 'true';
 
 document.getElementById('visitor-count').textContent = visitorCount;
 document.getElementById('like-count').textContent = likeCount;
@@ -86,31 +86,52 @@ visitorCount++;
 localStorage.setItem('visitorCount', visitorCount);
 document.getElementById('visitor-count').textContent = visitorCount;
 
-document.getElementById('like-button').addEventListener('click', () => {
+document.getElementById('like-button').addEventListener('click', function() {
     if (!hasLiked) {
         likeCount++;
         localStorage.setItem('likeCount', likeCount);
+        localStorage.setItem('hasLiked', 'true');
         document.getElementById('like-count').textContent = likeCount;
-        localStorage.setItem('hasLiked', true);
+        hasLiked = true;
     }
 });
 
-// Theme toggling logic
-document.getElementById('theme-button').addEventListener('click', () => {
-    const themeOptions = document.querySelector('.theme-options');
-    themeOptions.classList.toggle('visible');
+// Theme changer functionality
+const themeButton = document.getElementById('theme-button');
+const themeIcon = document.getElementById('theme-icon');
+const themeOptions = document.querySelector('.theme-options');
+const dayTheme = document.getElementById('day-theme');
+const darkTheme = document.getElementById('dark-theme');
+
+const setTheme = (theme) => {
+    if (theme === 'dark') {
+        document.body.classList.add('dark-theme');
+        document.body.classList.remove('day-theme');
+        themeIcon.src = '../Images/Moon.png';
+    } else {
+        document.body.classList.add('day-theme');
+        document.body.classList.remove('dark-theme');
+        themeIcon.src = '../Images/Sun.png';
+    }
+    localStorage.setItem('theme', theme);
+};
+
+themeButton.addEventListener('click', () => {
+    themeOptions.style.display = themeOptions.style.display === 'flex' ? 'none' : 'flex';
 });
 
-document.getElementById('day-theme').addEventListener('click', () => {
-    document.body.style.backgroundColor = '#ffffff';
-    document.body.style.color = '#000000';
-    document.getElementById('theme-icon').src = '../Images/Moon.png';
-    document.querySelector('.container').style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
+dayTheme.addEventListener('click', () => {
+    setTheme('day');
+    themeOptions.style.display = 'none';
 });
 
-document.getElementById('dark-theme').addEventListener('click', () => {
-    document.body.style.backgroundColor = '#000000';
-    document.body.style.color = '#ffffff';
-    document.getElementById('theme-icon').src = '../Images/Sun.png';
-    document.querySelector('.container').style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+darkTheme.addEventListener('click', () => {
+    setTheme('dark');
+    themeOptions.style.display = 'none';
+});
+
+// Set the initial theme
+document.addEventListener("DOMContentLoaded", function() {
+    const savedTheme = localStorage.getItem('theme') || 'day';
+    setTheme(savedTheme);
 });
