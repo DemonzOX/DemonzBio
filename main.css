@@ -11,7 +11,7 @@ body {
 
 /* Container styling */
 .container {
-    max-width: 100%; /* Full width for both desktop and mobile */
+    max-width: 600px;
     margin: 0 auto;
     padding: 20px;
     background-color: rgba(255, 255, 255, 0.1); /* Very low opacity for content area */
@@ -126,15 +126,6 @@ body {
     cursor: pointer;
 }
 
-/* Adjust content color based on theme */
-body.day-theme .container {
-    color: #000; /* Black text for day theme */
-}
-
-body.dark-theme .container {
-    color: #fff; /* White text for dark theme */
-}
-
 /* Responsive styling */
 @media (max-width: 768px) {
     .container {
@@ -154,19 +145,13 @@ body.dark-theme .container {
         width: 15px;
         height: 15px;
     }
+}
 
-    .theme-toggler {
-        top: 10px;
-        right: 10px;
-    }
+/* Adjust content color based on theme */
+body.day-theme .container {
+    color: #000; /* Black text for day theme */
+}
 
-    #theme-button {
-        width: 25px; /* Smaller size for mobile view */
-        height: 25px;
-    }
-
-    .theme-options img {
-        width: 25px;
-        height: 25px;
-    }
+body.dark-theme .container {
+    color: #fff; /* White text for dark theme */
 }
