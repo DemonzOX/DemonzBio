@@ -11,8 +11,8 @@ body {
 
 /* Container styling */
 .container {
-    width: 100%; /* Full width for all screen sizes */
-    margin: 0;
+    max-width: 100%; /* Full width for both desktop and mobile */
+    margin: 0 auto;
     padding: 20px;
     background-color: rgba(255, 255, 255, 0.1); /* Very low opacity for content area */
     text-align: left;
@@ -22,7 +22,6 @@ body {
     position: relative;
     z-index: 2;
     color: #fff; /* Text color to ensure readability */
-    box-sizing: border-box; /* Ensure padding doesn't increase container width */
 }
 
 /* Particle background */
@@ -42,12 +41,34 @@ body {
     top: 10px;
     right: 10px;
     z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
 
 #theme-button {
     cursor: pointer;
     width: 30px; /* Smaller size for theme toggle button */
     height: 30px;
+}
+
+.theme-options {
+    display: none;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 8px;
+    padding: 10px;
+    position: absolute;
+    top: 40px;
+    right: 0;
+    z-index: 1001;
+}
+
+.theme-options img {
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    margin-bottom: 10px;
 }
 
 /* Profile and buttons styling */
@@ -105,10 +126,19 @@ body {
     cursor: pointer;
 }
 
+/* Adjust content color based on theme */
+body.day-theme .container {
+    color: #000; /* Black text for day theme */
+}
+
+body.dark-theme .container {
+    color: #fff; /* White text for dark theme */
+}
+
 /* Responsive styling */
 @media (max-width: 768px) {
     .container {
-        padding: 10px; /* Slight padding to avoid content touching edges */
+        padding: 10px;
     }
 
     .buttons a {
@@ -123,5 +153,20 @@ body {
     .visitor img, .like img {
         width: 15px;
         height: 15px;
+    }
+
+    .theme-toggler {
+        top: 10px;
+        right: 10px;
+    }
+
+    #theme-button {
+        width: 25px; /* Smaller size for mobile view */
+        height: 25px;
+    }
+
+    .theme-options img {
+        width: 25px;
+        height: 25px;
     }
 }
