@@ -1,135 +1,154 @@
-// Background particles animation
-const canvas = document.getElementById('particles-js');
-const ctx = canvas.getContext('2d');
-
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-let particlesArray;
-
-const colors = ['#ffffff']; // Light white color
-
-class Particle {
-    constructor(x, y, directionX, directionY, size, color) {
-        this.x = x;
-        this.y = y;
-        this.directionX = directionX;
-        this.directionY = directionY;
-        this.size = size;
-        this.color = color;
-    }
-
-    draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
-        ctx.fillStyle = this.color;
-        ctx.fill();
-    }
-
-    update() {
-        if (this.x > canvas.width || this.x < 0) {
-            this.directionX = -this.directionX;
-        }
-        if (this.y > canvas.height || this.y < 0) {
-            this.directionY = -this.directionY;
-        }
-
-        this.x += this.directionX;
-        this.y += this.directionY;
-
-        this.draw();
-    }
-}
-
-function init() {
-    particlesArray = [];
-    let numberOfParticles = (canvas.height * canvas.width) / 6000;
-    for (let i = 0; i < numberOfParticles; i++) {
-        let size = (Math.random() * 5) + 1;
-        let x = (Math.random() * (innerWidth - size * 2)) + size;
-        let y = (Math.random() * (innerHeight - size * 2)) + size;
-        let directionX = (Math.random() * 4) - 2;
-        let directionY = (Math.random() * 4) - 2;
-        let color = colors[Math.floor(Math.random() * colors.length)];
-
-        particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
-    }
-}
-
-function animate() {
-    requestAnimationFrame(animate);
-    ctx.clearRect(0, 0, innerWidth, innerHeight);
-
-    for (let i = 0; i < particlesArray.length; i++) {
-        particlesArray[i].update();
-    }
-}
-
-window.addEventListener('resize', function() {
-    canvas.width = innerWidth;
-    canvas.height = innerHeight;
-    init();
-});
-
-init();
-animate();
-
-// Visitor count and like button functionality
-let visitorCount = localStorage.getItem('visitorCount') || 0;
-let likeCount = localStorage.getItem('likeCount') || 0;
-let hasLiked = localStorage.getItem('hasLiked') === 'true';
-
-document.getElementById('visitor-count').textContent = visitorCount;
-document.getElementById('like-count').textContent = likeCount;
-
-visitorCount++;
-localStorage.setItem('visitorCount', visitorCount);
-document.getElementById('visitor-count').textContent = visitorCount;
-
-document.getElementById('like-button').addEventListener('click', function() {
-    if (!hasLiked) {
-        likeCount++;
-        localStorage.setItem('likeCount', likeCount);
-        localStorage.setItem('hasLiked', 'true');
-        document.getElementById('like-count').textContent = likeCount;
-        hasLiked = true;
-    }
-});
-
-// Theme changer functionality
-const themeButton = document.getElementById('theme-button');
-const themeIcon = document.getElementById('theme-icon');
-const dayTheme = document.getElementById('day-theme');
-const darkTheme = document.getElementById('dark-theme');
-
-const setTheme = (theme) => {
-    if (theme === 'dark') {
-        document.body.classList.add('dark-theme');
-        document.body.classList.remove('day-theme');
-        themeIcon.src = '../Images/Moon.png';
-    } else {
-        document.body.classList.add('day-theme');
-        document.body.classList.remove('dark-theme');
-        themeIcon.src = '../Images/Sun.png';
-    }
-    localStorage.setItem('theme', theme);
-};
-
-themeButton.addEventListener('click', () => {
+document.addEventListener('DOMContentLoaded', () => {
+    const themeIcon = document.getElementById('theme-icon');
+    const themeButton = document.getElementById('theme-button');
     const themeOptions = document.querySelector('.theme-options');
-    themeOptions.style.display = themeOptions.style.display === 'flex' ? 'none' : 'flex';
-});
+    const storedTheme = localStorage.getItem('theme') || 'day';
 
-dayTheme.addEventListener('click', () => {
-    setTheme('day');
-});
+    const setParticleColors = (theme) => {
+        const colors = theme === 'dark' ? ['#ffffff'] : ['#000000']; // White for dark, black for day
 
-darkTheme.addEventListener('click', () => {
-    setTheme('dark');
-});
+        // Assuming particles.js is set up and particlesArray is accessible
+        particlesJS('particles-js', {
+            "particles": {
+                "number": {
+                    "value": 100,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": colors
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    },
+                    "polygon": {
+                        "nb_sides": 5
+                    },
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": false,
+                    "anim": {
+                        "enable": false,
+                        "speed": 1,
+                        "opacity_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 3,
+                    "random": true,
+                    "anim": {
+                        "enable": false,
+                        "speed": 40,
+                        "size_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#000000",
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 6,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "attract": {
+                        "enable": false,
+                        "rotateX": 600,
+                        "rotateY": 1200
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "repulse"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 400,
+                        "line_linked": {
+                            "opacity": 1
+                        }
+                    },
+                    "bubble": {
+                        "distance": 400,
+                        "size": 40,
+                        "duration": 2,
+                        "opacity": 8,
+                        "speed": 3
+                    },
+                    "repulse": {
+                        "distance": 200,
+                        "duration": 0.4
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    },
+                    "remove": {
+                        "particles_nb": 2
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+    };
 
-// Set the initial theme
-document.addEventListener("DOMContentLoaded", function() {
-    const savedTheme = localStorage.getItem('theme') || 'day';
-    setTheme(savedTheme);
+    const setTheme = (theme) => {
+        if (theme === 'dark') {
+            document.body.classList.add('dark-theme');
+            document.body.classList.remove('day-theme');
+            themeIcon.src = '../Images/Moon.png';
+        } else {
+            document.body.classList.add('day-theme');
+            document.body.classList.remove('dark-theme');
+            themeIcon.src = '../Images/Sun.png';
+        }
+        localStorage.setItem('theme', theme);
+        setParticleColors(theme); // Update particle colors
+    };
+
+    // Initialize the theme on page load
+    setTheme(storedTheme);
+
+    // Handle theme button click
+    themeButton.addEventListener('click', () => {
+        themeOptions.style.display = themeOptions.style.display === 'none' ? 'flex' : 'none';
+    });
+
+    // Handle theme option selection
+    themeOptions.addEventListener('click', (e) => {
+        if (e.target.tagName === 'IMG') {
+            const selectedTheme = e.target.getAttribute('data-theme');
+            setTheme(selectedTheme);
+            themeOptions.style.display = 'none'; // Close the theme options
+        }
+    });
+
+    // Hide theme options when clicking outside of it
+    document.addEventListener('click', (e) => {
+        if (!themeButton.contains(e.target) && !themeOptions.contains(e.target)) {
+            themeOptions.style.display = 'none';
+        }
+    });
 });
