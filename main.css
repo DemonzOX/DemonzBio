@@ -6,7 +6,7 @@ body {
     text-align: center;
     position: relative;
     overflow-x: hidden;
-    transition: background-color 0.3s, color 0.3s;
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for color changes */
 }
 
 /* Container styling */
@@ -14,15 +14,15 @@ body {
     max-width: 100%;
     margin: 0;
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.5); /* Adjust opacity here */
+    background-color: rgba(255, 255, 255, 0.6); /* Slightly transparent for day mode */
     text-align: left;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    min-height: 100vh; /* Ensure it covers the full viewport height */
     position: relative;
     z-index: 2;
-    color: #000;
-    transition: background-color 0.3s, color 0.3s;
+    color: #000; /* Default text color for day mode */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for color changes */
 }
 
 /* Particle background */
@@ -34,41 +34,110 @@ body {
     height: 100%;
     z-index: 1;
     opacity: 0.7; /* Adjusted opacity for better visibility */
-    transition: opacity 0.5s;
+    transition: opacity 0.5s; /* Smooth transition for opacity changes */
 }
 
-/* Adjust content color and container background based on theme */
-body.day-theme .container {
-    background-color: rgba(255, 255, 255, 0.5); /* White with low opacity for day mode */
-    color: #000;
+/* Theme toggle button */
+.theme-toggler {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
 
-body.dark-theme .container {
-    background-color: rgba(0, 0, 0, 0.5); /* Black with low opacity for dark mode */
-    color: #fff;
+#theme-button {
+    cursor: pointer;
+    width: 24px; /* Smaller size for theme toggle button */
+    height: 24px;
 }
 
-/* Ensure particles are visible in both themes */
-body.day-theme #particles-js {
-    opacity: 0.7; /* Visibility for particles in day mode */
+#theme-icon {
+    width: 24px; /* Match the size of slide bar icons */
+    height: 24px;
 }
 
-body.dark-theme #particles-js {
-    opacity: 0.7; /* Visibility for particles in dark mode */
+.theme-options {
+    display: none;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 8px;
+    padding: 10px;
+    position: absolute;
+    top: 30px; /* Adjusted to fit smaller theme button */
+    right: 0;
+    z-index: 1001;
 }
 
-/* Center text in desktop view */
-@media (min-width: 769px) {
-    .container {
-        text-align: center;
-    }
+.theme-options img {
+    cursor: pointer;
+    width: 24px; /* Match the size of the theme button icon */
+    height: 24px;
+    margin-bottom: 10px;
+}
+
+/* Profile and buttons styling */
+.profile {
+    display: block;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: auto;
+    gap: 10px;
+}
+
+.buttons a {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    overflow: hidden;
+    text-decoration: none;
+}
+
+/* Visitor and like buttons */
+.visitor-like {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    display: flex;
+    gap: 15px;
+}
+
+.visitor, .like {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    padding: 5px;
+}
+
+.visitor img, .like img {
+    width: 20px;
+    height: 20px;
+}
+
+#like-button {
+    background: none;
+    border: none;
+    cursor: pointer;
 }
 
 /* Responsive styling */
 @media (max-width: 768px) {
     .container {
         padding: 10px;
-        text-align: left;
+        text-align: left; /* Ensure text alignment is consistent on mobile */
     }
 
     .buttons a {
@@ -83,5 +152,32 @@ body.dark-theme #particles-js {
     .visitor img, .like img {
         width: 15px;
         height: 15px;
+    }
+}
+
+/* Adjust content color based on theme */
+body.day-theme .container {
+    background-color: rgba(255, 255, 255, 0.6); /* White background with low opacity for day mode */
+    color: #000; /* Black text color for day mode */
+}
+
+body.dark-theme .container {
+    background-color: rgba(0, 0, 0, 0.6); /* Black background with low opacity for dark mode */
+    color: #fff; /* White text color for dark mode */
+}
+
+/* Ensure particles are visible in both themes */
+body.day-theme #particles-js {
+    opacity: 0.7; /* Visibility for particles in day mode */
+}
+
+body.dark-theme #particles-js {
+    opacity: 0.7; /* Visibility for particles in dark mode */
+}
+
+/* Center text in desktop view */
+@media (min-width: 769px) {
+    .container {
+        text-align: center; /* Center text for desktop view */
     }
 }
